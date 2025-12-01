@@ -68,3 +68,52 @@ let SaveTicket (ticket: Ticket) (tickets: Ticket list) =
     File.WriteAllLines("tickets.txt", ticketLines)
     
     updatedTickets
+
+
+
+// ========== HELPER: Load Users from File ==========
+let LoadUsers() =
+    if File.Exists("users.txt") then
+        File.ReadAllLines("users.txt")
+        |> Array.toList
+        |> List.map (fun line ->
+            let parts = line.Split(',')
+            {
+                UserId = int parts.[0]
+                Username = parts.[1]
+                Password = parts.[2]
+            })
+    else
+        []
+
+// ========== HELPER: Load Seats from File ==========
+let LoadSeats() =
+    if File.Exists("seats.txt") then
+        File.ReadAllLines("seats.txt")
+        |> Array.toList
+        |> List.map (fun line ->
+            let parts = line.Split(',')
+            {
+                SeatId = int parts.[0]
+                RowNumber = int parts.[1]
+                SeatNumber = int parts.[2]
+                IsReserved = bool.Parse(parts.[3])
+            })
+    else
+        []
+
+// ========== HELPER: Load Tickets from File ==========
+let LoadTickets() =
+    if File.Exists("tickets.txt") then
+        File.ReadAllLines("tickets.txt")
+        |> Array.toList
+        |> List.map (fun line ->
+            let parts = line.Split(',')
+            {
+                TicketId = parts.[0]
+                SeatId = int parts.[1]
+                UserId = int parts.[2]
+                BookingDate = System.DateTime.Parse(parts.[3])
+            })
+    else
+        []
