@@ -25,7 +25,7 @@ let main argv =
     let user1 = { UserId = 0; Username = "moaz"; Password = "moaz123" }
     match saveUser user1 with
     | Some savedUser ->
-        printfn "User saved successfully!"
+        printfn "User saved successfully"
         printfn "  - User ID: %d" savedUser.UserId
         printfn "  - Username: %s" savedUser.Username
         printfn "  - Password: %s" savedUser.Password
@@ -37,7 +37,7 @@ let main argv =
     let user2 = { UserId = 0; Username = "mostafa"; Password = "mostafa123" }
     match saveUser user2 with
     | Some savedUser ->
-        printfn "User saved successfully!"
+        printfn "User saved successfully"
         printfn "  - User ID: %d" savedUser.UserId
         printfn "  - Username: %s" savedUser.Username
         printfn "  - Password: %s" savedUser.Password
@@ -49,7 +49,7 @@ let main argv =
     let user3 = { UserId = 0; Username = "marwan"; Password = "marwan123" }
     match saveUser user3 with
     | Some savedUser ->
-        printfn "User saved successfully!"
+        printfn "User saved successfully"
         printfn "  - User ID: %d" savedUser.UserId
         printfn "  - Username: %s" savedUser.Username
         printfn "  - Password: %s" savedUser.Password
@@ -69,7 +69,7 @@ let main argv =
     printfn "Searching for user 'moaz'"
     match findUserByUsername "moaz" with
     | Some user ->
-        printfn "User found!"
+        printfn "User found"
         printfn "  - User ID: %d" user.UserId
         printfn "  - Username: %s" user.Username
         printfn "  - Password: %s" user.Password
@@ -81,7 +81,7 @@ let main argv =
     printfn "Searching for user 'mostafa'"
     match findUserByUsername "mostafa" with
     | Some user ->
-        printfn "User found!"
+        printfn "User found"
         printfn "  - User ID: %d" user.UserId
         printfn "  - Username: %s" user.Username
     | None ->
@@ -89,12 +89,12 @@ let main argv =
     
     printfn ""
     
-    printfn "Searching for non-existent user 'marwan'"
-    match findUserByUsername "marwan" with
+    printfn "Searching for non-existent user 'mohamed'"
+    match findUserByUsername "mohamed" with
     | Some user ->
         printfn "User found: %s" user.Username
     | None ->
-        printfn "User not found (this is expected)"
+        printfn "User not found"
     
     printfn ""
     System.Threading.Thread.Sleep(1000)
@@ -109,7 +109,7 @@ let main argv =
     printfn "Searching for seat at Row 5, Seat 7"
     match findSeatByCoordinates 5 7 with
     | Some seat ->
-        printfn "Seat found!"
+        printfn "Seat found"
         printfn "  - Seat ID: %d" seat.SeatId
         printfn "  - Row: %d, Seat: %d" seat.RowNumber seat.SeatNumber
         printfn "  - Reserved: %b" seat.IsReserved
@@ -135,7 +135,7 @@ let main argv =
     | Some seat ->
         printfn "Seat found: ID=%d" seat.SeatId
     | None ->
-        printfn "Seat not found (this is expected - out of range)"
+        printfn "Seat not found"
     
     printfn ""
     System.Threading.Thread.Sleep(1000)
@@ -187,7 +187,7 @@ let main argv =
         | Some _ ->
             printfn "Seat reserved"
         | None ->
-            printfn "Cannot reserve - seat already reserved (this is expected)"
+            printfn "Cannot reserve seat already reserved"
     | None ->
         printfn "Seat not found"
     
@@ -213,7 +213,7 @@ let main argv =
             }
             match saveTicket ticket1 with
             | Some savedTicket ->
-                printfn "Ticket created successfully!"
+                printfn "Ticket created successfully"
                 printfn "  - Ticket ID: %s" savedTicket.TicketId
                 printfn "  - User: %s (ID: %d)" user.Username user.UserId
                 printfn "  - Seat: Row %d, Seat %d (ID: %d)" seat.RowNumber seat.SeatNumber seat.SeatId
@@ -238,7 +238,7 @@ let main argv =
             }
             match saveTicket ticket2 with
             | Some savedTicket ->
-                printfn "Ticket created successfully!"
+                printfn "Ticket created successfully"
                 printfn "  - Ticket ID: %s" savedTicket.TicketId
                 printfn "  - User: %s (ID: %d)" user.Username user.UserId
                 printfn "  - Seat: Row %d, Seat %d (ID: %d)" seat.RowNumber seat.SeatNumber seat.SeatId
@@ -267,11 +267,5 @@ let main argv =
         printfn "  Seat ID: %d | Row: %d, Seat: %d" s.SeatId s.RowNumber s.SeatNumber
     )
     
-    
-    
-    printfn "\n╔════════════════════════════════════════════════════════════╗"
-    printfn "║ ALL TESTS COMPLETED SUCCESSFULLY!                          ║"
-    printfn "║ Database file: cinema.db                                   ║"
-    printfn "╚════════════════════════════════════════════════════════════╝"
     
     0 // Exit code

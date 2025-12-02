@@ -4,9 +4,8 @@ open Microsoft.Data.Sqlite
 open Models
 open Database
 
-// ============================================================
-// 1. FIND USER BY USERNAME
-// ============================================================
+
+//1. Find User By Username
 let findUserByUsername username =
     use connection = getConnection()
     connection.Open()
@@ -25,9 +24,8 @@ let findUserByUsername username =
     else
         None
 
-// ============================================================
-// 2. SAVE USER
-// ============================================================
+
+//2. Save User
 let saveUser (user: User) =
     use connection = getConnection()
     connection.Open()
@@ -40,7 +38,6 @@ let saveUser (user: User) =
         
         cmd.ExecuteNonQuery() |> ignore
         
-        // Get the auto-generated UserId
         use lastIdCmd = new SqliteCommand("SELECT last_insert_rowid()", connection)
         let newUserId = lastIdCmd.ExecuteScalar() :?> int64 |> int
         
@@ -50,9 +47,8 @@ let saveUser (user: User) =
         printfn "Error saving user: %s" ex.Message
         None
 
-// ============================================================
-// 3. FIND SEAT BY COORDINATES
-// ============================================================
+
+//3. Find Seat By Coordinates
 let findSeatByCoordinates rowNumber seatNumber =
     use connection = getConnection()
     connection.Open()
@@ -73,15 +69,14 @@ let findSeatByCoordinates rowNumber seatNumber =
     else
         None
 
-// ============================================================
-// 4. SAVE SEAT RESERVATION
-// ============================================================
+
+//4. Save Seat Reservation
 let saveSeatReservation seatId =
     use connection = getConnection()
     connection.Open()
     
     try
-        // First check if seat exists and is not reserved
+        //check if seat exists and is not reserved
         let checkSql = "SELECT IsReserved FROM Seats WHERE SeatId = @seatId"
         use checkCmd = new SqliteCommand(checkSql, connection)
         checkCmd.Parameters.AddWithValue("@seatId", seatId) |> ignore
@@ -92,10 +87,9 @@ let saveSeatReservation seatId =
             reader.Close()
             
             if isReserved then
-                printfn "Seat is already reserved"
+                printfn "Seat Is Already Reserved"
                 None
             else
-                // Update seat to reserved
                 let updateSql = "UPDATE Seats SET IsReserved = 1 WHERE SeatId = @seatId"
                 use updateCmd = new SqliteCommand(updateSql, connection)
                 updateCmd.Parameters.AddWithValue("@seatId", seatId) |> ignore
@@ -103,16 +97,15 @@ let saveSeatReservation seatId =
                 updateCmd.ExecuteNonQuery() |> ignore
                 Some seatId
         else
-            printfn "Seat doesn't exist"
+            printfn "Seat Doesn't Exist"
             None
     with
     | :? SqliteException as ex ->
-        printfn "Error reserving seat: %s" ex.Message
+        printfn "Error Reserving Seat: %s" ex.Message
         None
 
-// ============================================================
-// 5. SAVE TICKET
-// ============================================================
+
+//5. Save Ticket
 let saveTicket (ticket: Ticket) =
     use connection = getConnection()
     connection.Open()
@@ -128,14 +121,12 @@ let saveTicket (ticket: Ticket) =
         Some ticket
     with
     | :? SqliteException as ex ->
-        printfn "Error saving ticket: %s" ex.Message
+        printfn "Error In Saving Ticket: %s" ex.Message
         None
 
-// ============================================================
-// HELPER FUNCTIONS (For testing and display)
-// ============================================================
 
-// Get all seats from database
+
+// Get All Seats From Database
 let getAllSeats() =
     use connection = getConnection()
     connection.Open()

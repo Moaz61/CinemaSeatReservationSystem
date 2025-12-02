@@ -1,20 +1,17 @@
 ﻿module Database
-
 open Microsoft.Data.Sqlite
 
-// Database connection string
+
 let connectionString = "Data Source=cinema.db"
 
-// Get a new database connection
 let getConnection() =
     new SqliteConnection(connectionString)
 
-// Initialize database and create tables
 let initializeDatabase() =
     use connection = getConnection()
     connection.Open()
     
-    // Create Users table
+
     let createUsersTable = """
         CREATE TABLE IF NOT EXISTS Users (
             UserId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +20,6 @@ let initializeDatabase() =
         )
     """
     
-    // Create Seats table
     let createSeatsTable = """
         CREATE TABLE IF NOT EXISTS Seats (
             SeatId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,8 +29,8 @@ let initializeDatabase() =
             UNIQUE(RowNumber, SeatNumber)
         )
     """
-    
-    // Create Tickets table
+
+
     let createTicketsTable = """
         CREATE TABLE IF NOT EXISTS Tickets (
             TicketId TEXT PRIMARY KEY,
@@ -54,5 +50,6 @@ let initializeDatabase() =
     use cmd3 = new SqliteCommand(createTicketsTable, connection)
     cmd3.ExecuteNonQuery() |> ignore
     
-    printfn "✓ Database initialized successfully"
+
+    printfn "Database Created Successfully"
 
