@@ -13,7 +13,6 @@ let main argv =
     // Initialize database and tables
     printfn "Step 1: Initializing database..."
     initializeDatabase()
-    initializeSeats()
     printfn ""
     
     // ============================================================
@@ -260,11 +259,6 @@ let main argv =
     printfn "║ DATABASE SUMMARY                                           ║"
     printfn "╚════════════════════════════════════════════════════════════╝"
     
-    printfn "\n--- ALL USERS IN DATABASE ---"
-    let allUsers = getAllUsers()
-    allUsers |> List.iter (fun u ->
-        printfn "  ID: %d | Username: %s" u.UserId u.Username
-    )
     
     printfn "\n--- RESERVED SEATS ---"
     let allSeats = getAllSeats()
@@ -273,16 +267,7 @@ let main argv =
         printfn "  Seat ID: %d | Row: %d, Seat: %d" s.SeatId s.RowNumber s.SeatNumber
     )
     
-    printfn "\n--- ALL TICKETS ---"
-    let allTickets = getAllTickets()
-    allTickets |> List.iter (fun t ->
-        printfn " Ticket ID: %s" t.TicketId
-        printfn " User ID: %d | Seat ID: %d" 
-            t.UserId t.SeatId 
-    )
     
-    // Display seating map
-    displaySeatingMap()
     
     printfn "\n╔════════════════════════════════════════════════════════════╗"
     printfn "║ ALL TESTS COMPLETED SUCCESSFULLY!                          ║"

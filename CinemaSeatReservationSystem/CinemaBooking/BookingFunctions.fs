@@ -135,26 +135,6 @@ let saveTicket (ticket: Ticket) =
 // HELPER FUNCTIONS (For testing and display)
 // ============================================================
 
-// Get all users from database
-let getAllUsers() =
-    use connection = getConnection()
-    connection.Open()
-    
-    let sql = "SELECT UserId, Username, Password FROM Users"
-    use cmd = new SqliteCommand(sql, connection)
-    use reader = cmd.ExecuteReader()
-    
-    let mutable users = []
-    while reader.Read() do
-        let user = {
-            UserId = reader.GetInt32(0)
-            Username = reader.GetString(1)
-            Password = reader.GetString(2)
-        }
-        users <- user :: users
-    
-    List.rev users
-
 // Get all seats from database
 let getAllSeats() =
     use connection = getConnection()
@@ -175,23 +155,3 @@ let getAllSeats() =
         seats <- seat :: seats
     
     List.rev seats
-
-// Get all tickets from database
-let getAllTickets() =
-    use connection = getConnection()
-    connection.Open()
-    
-    let sql = "SELECT TicketId, SeatId, UserId, BookingDate FROM Tickets"
-    use cmd = new SqliteCommand(sql, connection)
-    use reader = cmd.ExecuteReader()
-    
-    let mutable tickets = []
-    while reader.Read() do
-        let ticket = {
-            TicketId = reader.GetString(0)
-            SeatId = reader.GetInt32(1)
-            UserId = reader.GetInt32(2)
-        }
-        tickets <- ticket :: tickets
-    
-    List.rev tickets
