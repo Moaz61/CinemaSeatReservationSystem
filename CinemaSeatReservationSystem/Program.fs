@@ -37,24 +37,24 @@ let main argv =
     let user2 = { UserId = 0; Username = "mostafa"; Password = "mostafa123" }
     match saveUser user2 with
     | Some savedUser ->
-        printfn "✓ User saved successfully!"
+        printfn "User saved successfully!"
         printfn "  - User ID: %d" savedUser.UserId
         printfn "  - Username: %s" savedUser.Username
         printfn "  - Password: %s" savedUser.Password
     | None ->
-        printfn "✗ Failed to save user"
+        printfn "Failed to save user"
     
     printfn ""
     
     let user3 = { UserId = 0; Username = "marwan"; Password = "marwan123" }
     match saveUser user3 with
     | Some savedUser ->
-        printfn "✓ User saved successfully!"
+        printfn "User saved successfully!"
         printfn "  - User ID: %d" savedUser.UserId
         printfn "  - Username: %s" savedUser.Username
         printfn "  - Password: %s" savedUser.Password
     | None ->
-        printfn "✗ Failed to save user"
+        printfn "Failed to save user"
     
     printfn ""
     System.Threading.Thread.Sleep(1000)
@@ -69,7 +69,7 @@ let main argv =
     printfn "Searching for user 'moaz'"
     match findUserByUsername "moaz" with
     | Some user ->
-        printfn "✓ User found!"
+        printfn "User found!"
         printfn "  - User ID: %d" user.UserId
         printfn "  - Username: %s" user.Username
         printfn "  - Password: %s" user.Password
