@@ -7,8 +7,13 @@
 
   <ItemGroup>
 	<Compile Include="CinemaBooking\Models.fs" />
+	<Compile Include="CinemaBooking\Database.fs" />
     <Compile Include="CinemaBooking\BookingFunctions.fs" />
     <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0" />
   </ItemGroup>
 
 </Project>
