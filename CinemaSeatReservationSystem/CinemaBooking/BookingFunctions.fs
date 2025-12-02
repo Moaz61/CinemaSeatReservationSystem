@@ -118,7 +118,7 @@ let saveTicket (ticket: Ticket) =
     connection.Open()
     
     try
-        let sql = "INSERT INTO Tickets (TicketId, SeatId, UserId, BookingDate) VALUES (@ticketId, @seatId, @userId, @bookingDate)"
+        let sql = "INSERT INTO Tickets (TicketId, SeatId, UserId) VALUES (@ticketId, @seatId, @userId)"
         use cmd = new SqliteCommand(sql, connection)
         cmd.Parameters.AddWithValue("@ticketId", ticket.TicketId) |> ignore
         cmd.Parameters.AddWithValue("@seatId", ticket.SeatId) |> ignore
