@@ -211,7 +211,6 @@ let main argv =
                 TicketId = Guid.NewGuid().ToString()
                 SeatId = seat.SeatId
                 UserId = user.UserId
-                BookingDate = DateTime.Now
             }
             match saveTicket ticket1 with
             | Some savedTicket ->
@@ -219,7 +218,6 @@ let main argv =
                 printfn "  - Ticket ID: %s" savedTicket.TicketId
                 printfn "  - User: %s (ID: %d)" user.Username user.UserId
                 printfn "  - Seat: Row %d, Seat %d (ID: %d)" seat.RowNumber seat.SeatNumber seat.SeatId
-                printfn "  - Booking Date: %s" (savedTicket.BookingDate.ToString("yyyy-MM-dd HH:mm:ss"))
             | None ->
                 printfn "Failed to create ticket"
         | None ->
@@ -238,7 +236,6 @@ let main argv =
                 TicketId = Guid.NewGuid().ToString()
                 SeatId = seat.SeatId
                 UserId = user.UserId
-                BookingDate = DateTime.Now
             }
             match saveTicket ticket2 with
             | Some savedTicket ->
@@ -279,9 +276,9 @@ let main argv =
     printfn "\n--- ALL TICKETS ---"
     let allTickets = getAllTickets()
     allTickets |> List.iter (fun t ->
-        printfn "  Ticket ID: %s" t.TicketId
-        printfn "    User ID: %d | Seat ID: %d | Date: %s" 
-            t.UserId t.SeatId (t.BookingDate.ToString("yyyy-MM-dd HH:mm:ss"))
+        printfn " Ticket ID: %s" t.TicketId
+        printfn " User ID: %d | Seat ID: %d" 
+            t.UserId t.SeatId 
     )
     
     // Display seating map

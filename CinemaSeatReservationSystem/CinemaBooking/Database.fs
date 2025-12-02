@@ -40,7 +40,6 @@ let initializeDatabase() =
             TicketId TEXT PRIMARY KEY,
             SeatId INTEGER NOT NULL,
             UserId INTEGER NOT NULL,
-            BookingDate TEXT NOT NULL,
             FOREIGN KEY (SeatId) REFERENCES Seats(SeatId),
             FOREIGN KEY (UserId) REFERENCES Users(UserId)
         )

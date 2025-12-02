@@ -17,5 +17,4 @@ type Ticket = {
     TicketId: string
     SeatId: int
     UserId: int
-    BookingDate: System.DateTime
 }

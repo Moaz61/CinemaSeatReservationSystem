@@ -123,7 +123,6 @@ let saveTicket (ticket: Ticket) =
         cmd.Parameters.AddWithValue("@ticketId", ticket.TicketId) |> ignore
         cmd.Parameters.AddWithValue("@seatId", ticket.SeatId) |> ignore
         cmd.Parameters.AddWithValue("@userId", ticket.UserId) |> ignore
-        cmd.Parameters.AddWithValue("@bookingDate", ticket.BookingDate.ToString("yyyy-MM-dd HH:mm:ss")) |> ignore
         
         cmd.ExecuteNonQuery() |> ignore
         Some ticket
@@ -192,7 +191,6 @@ let getAllTickets() =
             TicketId = reader.GetString(0)
             SeatId = reader.GetInt32(1)
             UserId = reader.GetInt32(2)
-            BookingDate = System.DateTime.Parse(reader.GetString(3))
         }
         tickets <- ticket :: tickets
     
